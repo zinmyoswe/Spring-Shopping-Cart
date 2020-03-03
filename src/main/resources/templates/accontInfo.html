@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Account Info</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+   </head>
+   <body>
+    
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Account Info</div>
+      <div class="account-container">
+         <ul>
+            <li>User Name: <span th:utext="${#request.userPrincipal.name}"></span></li>
+            <li>
+               Role:
+               <ul>
+                  <li th:each="auth : ${userDetails.authorities}" th:utext="${auth.authority}"></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

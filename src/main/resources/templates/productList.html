@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <meta charset="UTF-8">
+      <title>Product List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Product List</div>
+       
+      <div class="product-preview-container" th:each="prodInfo : ${paginationProducts.list}">
+         <ul>
+            <li><img class="product-image"
+               th:src="@{|/productImage?code=${prodInfo.code}|}" /></li>
+            <li>Code: <span th:utext="${prodInfo.code}"></span></li>
+            <li>Name: <span th:utext="${prodInfo.name}"></span></li>
+            <li>Price: <span th:utext="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span></li>
+            <li>
+               <a th:href="@{|/buyProduct?code=${prodInfo.code}|}">Buy Now</a>
+            </li>
+            <!-- For Manager edit Product -->
+            <th:block sec:authorize="hasAuthority('ROLE_MANAGER')">
+               <li>
+                 <a style="color:red;"
+                    th:href="@{|/admin/product?code=${prodInfo.code}|}">Edit Product</a>
+               </li>
+            </th:block>
+         </ul>
+      </div>
+       
+      <br/>
+      <div class="page-navigator" th:if="${paginationProducts.totalPages > 1}">
+         <th:block th:each="page : ${paginationProducts.navigationPages}">
+         
+            <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
+               class="nav-item" th:utext="${page}"></a>
+               
+            <span class="nav-item" th:if="${page == -1}"> ... </span>
+             
+         </th:block>
+      </div>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

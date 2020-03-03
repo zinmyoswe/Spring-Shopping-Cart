@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Product List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Order Info</div>
+       
+      <div class="customer-info-container">
+         <h3>Customer Information:</h3>
+         <ul>
+            <li>Name: <span th:utext="${orderInfo.customerName}"></span></li>
+            <li>Email: <span th:utext="${orderInfo.customerEmail}"></span></li>
+            <li>Phone: <span th:utext="${orderInfo.customerPhone}"></span></li>
+            <li>Address: <span th:utext="${orderInfo.customerAddress}"></span></li>
+         </ul>
+         <h3>Order Summary:</h3>
+         <ul>
+            <li>Total:
+               <span class="total" th:utext="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}">         
+               </span>
+            </li>
+         </ul>
+      </div>
+      <br/>
+      <table border="1" style="width:100%">
+         <tr>
+            <th>Product Code</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Amount</th>
+         </tr>
+         <tr th:each="orderDetailInfo : ${orderInfo.details}">
+            <td th:utext="${orderDetailInfo.productCode}"></td>
+            <td th:utext="${orderDetailInfo.productName}"></td>
+            <td th:utext="${orderDetailInfo.quanity}"></td>
+            <td th:utext="${#numbers.formatDecimal(orderDetailInfo.price,3,2,'COMMA')}"></td>
+            <td th:utext="${#numbers.formatDecimal(orderDetailInfo.amount,3,2,'COMMA')}"></td>
+         </tr>
+      </table>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>
