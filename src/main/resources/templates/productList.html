@@ -27,7 +27,7 @@
      style="width:280px; height:320px; margin-bottom:5px; margin-right:2px;">
       <h6 class="h6_offer">Originals</h6>
       <p><span th:utext="${prodInfo.name}"></span><br>
-        $<span th:utext="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span>
+        $<span th:utext="${prodInfo.price}"></span>
       </p>
       <h6 class="h6_offer">2 colors</h6>
       <a th:href="@{|/buyProduct?code=${prodInfo.code}|}" class="btn btn-link" >Buy Now</a>
@@ -64,13 +64,12 @@
           </div>
         </div>
   <!-- nav start  -->
-        <nav aria-label="Page navigation example" >
-  <ul class="pagination justify-content-center" th:if="${paginationProducts.totalPages > 1}">
-  <th:block th:each="page : ${paginationProducts.navigationPages}">
+        <nav aria-label="Page navigation example" th:if="${paginationProducts.totalPages > 1}">
+  <ul class="pagination justify-content-center" >
+  		<th:block th:each="page : ${paginationProducts.navigationPages}">
     
     <li class="page-item"><a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
                class="nav-item" th:utext="${page}"></a></li>
-               
             <span class="nav-item" th:if="${page == -1}"> ... </span>
              
          </th:block>
