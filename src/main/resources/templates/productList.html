@@ -1,36 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8">
-      <title>Product List</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+      <title>Spring Shop Online</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+      <th:block th:include="/_header"></th:block>
    </head>
    <body>
-      <th:block th:include="/_header"></th:block>
+      
       <th:block th:include="/_menu"></th:block>
-       
-      <div class="page-title">Product List</div>
-       
-      <div class="product-preview-container" th:each="prodInfo : ${paginationProducts.list}">
-         <ul>
-            <li><img class="product-image"
-               th:src="@{|/productImage?code=${prodInfo.code}|}" /></li>
-            <li>Code: <span th:utext="${prodInfo.code}"></span></li>
-            <li>Name: <span th:utext="${prodInfo.name}"></span></li>
-            <li>Price: <span th:utext="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span></li>
-            <li>
-               <a th:href="@{|/buyProduct?code=${prodInfo.code}|}">Buy Now</a>
-            </li>
-            <!-- For Manager edit Product -->
+      
+      <section id="offer">
+  <div class="section-content">
+    <div class="container">
+        <h2 style="font-weight: bold;">Product List</h2>
+        
+        
+        <div class="row">
+          <div class="col-lg-12 col-sm-12">
+           <div class="row">
+            
+            <div th:each="prodInfo : ${paginationProducts.list}">
+             <div class="">
+              <div class="display">
+     <img th:src="@{|/productImage?code=${prodInfo.code}|}" alt="..." 
+     style="width:280px; height:320px; margin-bottom:5px; margin-right:2px;">
+      <h6 class="h6_offer">Originals</h6>
+      <p><span th:utext="${prodInfo.name}"></span><br>
+        $<span th:utext="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span>
+      </p>
+      <h6 class="h6_offer">2 colors</h6>
+      <a th:href="@{|/buyProduct?code=${prodInfo.code}|}" class="btn btn-link" >Buy Now</a>
+            </div>
+             </div>
+             <!-- For Manager edit Product -->
             <th:block sec:authorize="hasAuthority('ROLE_MANAGER')">
-               <li>
+               
                  <a style="color:red;"
                     th:href="@{|/admin/product?code=${prodInfo.code}|}">Edit Product</a>
-               </li>
+               
             </th:block>
-         </ul>
-      </div>
+       		</div>
+      
+       
+      
        
       <br/>
       <div class="page-navigator" th:if="${paginationProducts.totalPages > 1}">
@@ -43,6 +56,34 @@
              
          </th:block>
       </div>
+      <!-- ------------------------------Offer end---------------------------------- -->
+      
+      </div> 
+
+
+          </div>
+        </div>
+  <!-- nav start  -->
+        <nav aria-label="Page navigation example" >
+  <ul class="pagination justify-content-center" th:if="${paginationProducts.totalPages > 1}">
+  <th:block th:each="page : ${paginationProducts.navigationPages}">
+    
+    <li class="page-item"><a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
+               class="nav-item" th:utext="${page}"></a></li>
+               
+            <span class="nav-item" th:if="${page == -1}"> ... </span>
+             
+         </th:block>
+   
+  </ul>
+</nav> <!-- nav end -->
+    </div><!-- container end -->
+  </div>
+</section>
+
+<!-- ------------------------------Offer end---------------------------------- -->
+      
+      
        
       <th:block th:include="/_footer"></th:block>
        
