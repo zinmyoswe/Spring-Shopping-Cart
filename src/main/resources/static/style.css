@@ -1,0 +1,208 @@
+html, body{
+	height: 100%;
+	font-family: 'Lato', sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Abel', sans-serif;
+}
+
+/* cover */
+
+#cover{
+	background: #222 url('img/main.jpg') center center no-repeat;
+	background-size: cover;
+	color: white;
+	text-align: center;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+#cover-caption{
+	width: 100%;
+}
+
+.form-group{
+	margin-right: 0.5rem;
+}
+
+h1{
+	font-family: 'Lato', sans-serif;
+}
+
+img{
+	max-width: 100%;
+}
+
+/* offer */
+
+.section-content{
+	padding: 5rem 0;
+}
+
+.card{
+	margin: 1rem;
+}
+
+.h2_offer{
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+}
+
+.h6_offer{
+	color: grey;
+	font-size: 12px;
+}
+
+.card-text{
+	color: grey;
+}
+
+.b_offer{
+	color: #000;
+}
+
+#offer a{
+	color: #000 !important;
+}
+
+#offer a:hover{
+	color: #000;
+	font-weight: bold;
+}
+
+
+
+/* about */
+#about{
+	background-image: url('https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/frCA/Images/originals-ss20-superstar-drop2-sustain-hp-mh-small-option3-v1-d_tcm214-446961.jpg');
+	background-size: cover;
+}
+
+
+.about-text{
+	
+	color: white;
+	padding: 1.85rem;
+}
+
+.about-text h3{
+	font-family: 'Lato', sans-serif;
+}
+
+.card-title{
+	font-family: 'Lato', sans-serif;
+
+}
+
+/* footer */
+#footer-main{
+	background: #000;
+	color: white;
+	font-size: 0.8rem;
+	padding: 2.5rem 0;
+	font-family: 'Lato', sans-serif;
+}
+
+#footer-main a{
+	font-size: 14px;
+	display: block;
+	margin: 0.3rem;
+	color: grey;
+}
+
+#footer-main a:hover{
+	font-weight: bold;
+	color: white;
+}
+
+
+
+#footer-main hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid white;
+}
+
+#footer-main img{
+	margin-right: 0.6rem;
+}
+
+/* footer sub*/
+
+#footer-sub{
+	height: 5rem;
+	background: whitesmoke;
+}
+
+#footer-sub img{
+	margin: 1rem;
+	
+	height: 52px;
+}
+
+.ico{
+	font-size: 18px;
+	margin: 0.5rem;
+}
+
+.fab{
+	margin-right: 0.5rem;
+}
+
+#spring1 video{
+	width: 100%;
+
+}
+#spring1 h1{
+	font-family: 'Lato', sans-serif;
+	font-family: 'Abel', sans-serif;
+}
+
+/* spring2 */
+
+
+
+#spring2{
+	
+	background-image: url('https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/originals-supersta-2020-ss20-masthead-d_tcm221-469070.jpg');
+	background-size: cover;
+}
+
+
+.spring2-text{
+	
+	color: white;
+	padding: 1.85rem;
+}
+
+.spring2-text h3{
+	font-family: 'Lato', sans-serif;
+}
+
+.card-title{
+	font-family: 'Lato', sans-serif;
+
+}
+
+.btn-dark{
+	background-color: #000;
+	color: #fff;
+}
+
+/*about 3 start*/
+
+#about-sub1{
+	background-image: url('https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/frCA/Images/JW_Ford_Teasercard_Desktop_Mobile_1960x480_tcm214-467022.jpg');
+}
+
+#product_sec{
+	margin: 15px;
+	padding: 10px;
+}
+
+#product_sec img{
+	height: 100%;
+	width: 100%;
+}
+
