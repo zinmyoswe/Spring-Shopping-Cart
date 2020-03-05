@@ -12,6 +12,7 @@
     height: 85px;
     margin-bottom: 5px;
 	}
+	
    </style>
    <body>
       
@@ -56,16 +57,7 @@
       
        
       <br/>
-      <div class="page-navigator" th:if="${paginationProducts.totalPages > 1}">
-         <th:block th:each="page : ${paginationProducts.navigationPages}">
-         
-            <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
-               class="nav-item" th:utext="${page}"></a>
-               
-            <span class="nav-item" th:if="${page == -1}"> ... </span>
-             
-         </th:block>
-      </div>
+    
       <!-- ------------------------------Offer end---------------------------------- -->
       
       </div> 
@@ -75,18 +67,20 @@
         </div>
         <br><br>
   <!-- nav start  -->
-        <nav aria-label="Page navigation example" th:if="${paginationProducts.totalPages > 1}">
-  <ul class="pagination justify-content-center" >
-  		<th:block th:each="page : ${paginationProducts.navigationPages}">
-    
-    <li class="page-item"><a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
-               class="nav-item" th:utext="${page}"></a></li>
-            <span class="nav-item" th:if="${page == -1}"> ... </span>
+  		<div class="row">
+  		<div class="col-lg-6 offset-4">
+        <div class="" th:if="${paginationProducts.totalPages > 1}">
+         <th:block th:each="page : ${paginationProducts.navigationPages}">
+         
+            <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
+               class="btn btn-dark" style="border-radius: 0%; margin:2px;" th:utext="${page}"></a>
+               
+            <span class="btn btn-dark" style="border-radius: 0%; margin:2px;" th:if="${page == -1}"> ... </span>
              
          </th:block>
-   
-  </ul>
-</nav> <!-- nav end -->
+         </div>
+         </div>
+      </div> <!-- nav end -->
     </div><!-- container end -->
   
 
