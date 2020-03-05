@@ -33,7 +33,7 @@
                      <li>Name: <span th:utext="${cartLineInfo.productInfo.name}"></span></li>
                      <li>Price:
                         <span class="price"
-                           th:utext="${#numbers.formatDecimal(cartLineInfo.productInfo.price,3,2,'COMMA')}">
+                           th:utext="${cartLineInfo.productInfo.price}">
                         </span>
                      </li>
                      <li>Quantity:
@@ -43,9 +43,20 @@
                      </li>
                      <li>Subtotal:
                         <span class="subtotal"
-                           th:utext="${#numbers.formatDecimal(cartLineInfo.amount,3,2,'COMMA')}">
+                           th:utext="${cartLineInfo.amount}">
                         </span>
                      </li>
+                     
+                    
+            <li>Quantity: <span th:utext="${myCart.quantityTotal}"></span>$</li>
+            <li>Total:
+               <span class="total"
+                  th:utext="${#numbers.formatDecimal(myCart.amountTotal,3,2,'COMMA')}">  
+               </span>
+            </li>
+         
+                     
+                     
                      <li>
                         <a th:href="@{|/shoppingCartRemoveProduct?code=${cartLineInfo.productInfo.code}|}">
                         Delete
