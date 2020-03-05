@@ -6,18 +6,25 @@
       <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
       <th:block th:include="/_header"></th:block>
    </head>
+   <style>
+   	.box {
+    width: 230px;
+    height: 85px;
+    margin-bottom: 5px;
+	}
+   </style>
    <body>
       
       <th:block th:include="/_menu"></th:block>
       
-      <section id="offer">
-  <div class="section-content">
+      
+  
     <div class="container">
         <h2 style="font-weight: bold;">Product List</h2>
         
         
         <div class="row">
-          <div class="col-lg-12 col-sm-12">
+          <div class="col-md-12 col-sm-12">
            <div class="row">
             
             <div th:each="prodInfo : ${paginationProducts.list}">
@@ -25,14 +32,16 @@
               <div class="display">
      <img th:src="@{|/productImage?code=${prodInfo.code}|}" alt="..." 
      style="width:280px; height:320px; margin-bottom:5px; margin-right:2px;">
+     <div class="box">
       <h6 class="h6_offer">Originals</h6>
-      <p><span th:utext="${prodInfo.name}"></span><br>
+      <p style="font-size:13px;"><span th:utext="${prodInfo.name}"></span><br>
         $<span th:utext="${prodInfo.price}"></span>
       </p>
       <h6 class="h6_offer">2 colors</h6>
       <a th:href="@{|/buyProduct?code=${prodInfo.code}|}" class="btn btn-link" >Buy Now</a>
             </div>
              </div>
+             
              <!-- For Manager edit Product -->
             <th:block sec:authorize="hasAuthority('ROLE_MANAGER')">
                
@@ -40,6 +49,7 @@
                     th:href="@{|/admin/product?code=${prodInfo.code}|}">Edit Product</a>
                
             </th:block>
+            </div>
        		</div>
       
        
@@ -63,6 +73,7 @@
 
           </div>
         </div>
+        <br><br>
   <!-- nav start  -->
         <nav aria-label="Page navigation example" th:if="${paginationProducts.totalPages > 1}">
   <ul class="pagination justify-content-center" >
@@ -77,8 +88,8 @@
   </ul>
 </nav> <!-- nav end -->
     </div><!-- container end -->
-  </div>
-</section>
+  
+
 
 <!-- ------------------------------Offer end---------------------------------- -->
       
