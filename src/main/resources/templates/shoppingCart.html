@@ -2,19 +2,122 @@
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8">
-      <title>Shopping Cart</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
-   </head>
-   <body>
+      <title>Spring Shop Online</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
       <th:block th:include="/_header"></th:block>
+   </head>
+   <style>
+	   a{
+	    color: #000;
+	   }
+	   a:hover{
+	    color: #fff;
+	    background-color: #000;
+	   }
+   </style>
+   <body>
+      
       <th:block th:include="/_menu"></th:block>
        
-      <div class="page-title">My Cart</div>
-       
+            
       <th:block th:if="${cartForm == null || cartForm.cartLines == null || cartForm.cartLines.empty}">
          <h2>There is no items in Cart</h2>
          <a th:href="@{/productList}">Show Product List</a>
       </th:block>
+      
+      <div class="container">
+       <h2 style="font-weight: bold;">YOUR BAG</h2>
+      <div class="row">
+        <div class="col-lg-8 col-sm-8 col-xs-12">
+          <table class="table">
+          
+          <th:block th:if="${cartForm != null && cartForm.cartLines != null && !cartForm.cartLines.empty}">
+         <form method="POST" th:object="${cartForm}" th:action="@{/shoppingCart}">
+          
+               <div class="product-preview-container"
+                        th:each="cartLineInfo, varStatus : ${cartForm.cartLines}">
+            <tr>
+              <td><img th:src="@{|/productImage?code=${cartLineInfo.productInfo.code}|}" width="190px"></td>
+              <td>
+                <b style="color: #000;font-size:16px; font-weight: 600" th:utext="${cartLineInfo.productInfo.name}"></b>
+                <p style="font-size: 14px;">CORE BLACK / CORE BLACK / CORE BLACK<br>
+                SIZE: M 7.5 / W 8.5<br>
+                PRICE: <span th:utext="${cartLineInfo.productInfo.price}"></span>
+                </p>
+                
+                <p th:utext="${cartLineInfo.productInfo.code}" style="font-size: 14px;"></p>
+                        <input type="hidden"      
+                           th:name="|cartLines[${varStatus.index}].productInfo.code|"                       
+                           th:value="${cartLineInfo.productInfo.code}" />
+                <a href="">Move to Favorites</a> | <a th:href="@{|/shoppingCartRemoveProduct?code=${cartLineInfo.productInfo.code}|}"><span class="fas fa-trash"> </span> Remove</a>
+              </td>
+              <td> <input type="text" th:name="|cartLines[${varStatus.index}].quantity|" th:value="${cartLineInfo.quantity}" class="form-control" style="width: 50px; height: 35px;">
+              
+              </td>
+              <td>$<p th:utext="${cartLineInfo.amount}"></p></td>
+            </tr>
+              </div>
+
+            <tr >
+              <td colspan="7" align="right">
+              <input class="btn btn-outline-dark" type="submit" value="Update Quantity" />
+              <a th:href="@{/productList}" style="margin-left: 20px;">Continue Shopping</a>
+              <a th:href="@{/shoppingCartCustomer}">Enter Customer Info</a>
+               
+              </td>
+              <td></td>
+              <td></td>      
+            </tr>
+            
+            
+         </form>
+      </th:block>
+          </table>
+        </div> <!-- -----col-lg-8 col-sm-8 col-xs-12 end --- -->
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+          <h5 style="font-weight: bold;">SUMMARY</h5>
+          <table class="table cart-subtotal">
+            <tr>
+              <td>
+                Do you have a Promo Code? <i class="fas fa-chevron-down"></i> <i class="fas fa-question-circle"></i><br><br>
+                Subtotal <i class="fas fa-question-circle"></i><br><br>
+                Quantity <br><br>
+                Estimated Shipping & Handling<br><br>
+                Estimated TAX
+              </td>
+              <td>
+              <br><br>
+              $<span th:utext="${myCart.amountTotal}"></span><br><br>
+              [<span th:utext="${myCart.quantityTotal}"></span> ITEMS]<br><br>
+              FREE<br><br>
+              $0.0
+            </td> 
+         
+            <tr>
+              <td><b>TOTAL</b></td>
+              <td><b>$<span th:utext="${myCart.amountTotal}"></span></b></td> 
+            </tr>
+
+
+
+            
+          </table>
+          
+          <button type="button" class="btn btn-dark btn-lg btn-block">CHECKOUT <span class="fa fa-arrow-right" style="margin-left: 9px;"></span></button>
+          
+          <a href="" class="btn btn-outline-light btn-lg btn-block"><img src="https://www.nike.com/assets/experience/pet/payment-icons/paypal@2x.png" ></a>
+
+          <br><br>
+          <h5 style="font-weight: bold;">ACCEPTED PAYMENT METHODS</h5><br>
+          <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/visa-master-amex-disc-pp-apple-affirm_tcm221-444412.png">
+          
+          
+        </div>
+      </div>
+    </div>
+   
+
+        <!-- ------------------------------footer end---------------------------------- -->
        
       <th:block th:if="${cartForm != null && cartForm.cartLines != null && !cartForm.cartLines.empty}">
          <form method="POST" th:object="${cartForm}" th:action="@{/shoppingCart}">
