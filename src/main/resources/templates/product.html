@@ -6,6 +6,16 @@
       <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
       <th:block th:include="/_header"></th:block>
    </head>
+   <style>
+   	 <style>
+   	html, body{
+	height: 100%;
+	font-family: 'Lato', sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Abel', sans-serif;
+}
+
+   </style>
    <body>
       
       <th:block th:include="/_menu"></th:block>
@@ -13,6 +23,7 @@
       <div class="container">
       	<div class="row">
       		<div class="col-lg-6 offset-3">
+      		
       
       <form th:object="${productForm}" th:action="@{/admin/product}"
               method="POST" enctype="multipart/form-data">
@@ -25,10 +36,10 @@
     <label for="exampleInputEmail1">Code</label>
     <input th:field="*{newProduct}" type="hidden" />
                   <input th:if="${productForm.newProduct}" type="text"
-                     th:field="*{code}" />  
+                     th:field="*{code}" class="form-control"/>  
                   <th:block th:if="${!productForm.newProduct}">   
                        <span th:utext="${productForm.code}"></span>   
-                       <input type="hidden" th:field="*{code}" />                                       
+                       <input type="hidden" th:field="*{code}"  />                                       
                   </th:block> 
     <span class="error-message" th:if="${#fields.hasErrors('code')}" th:errors="*{code}">..</span>  
     
