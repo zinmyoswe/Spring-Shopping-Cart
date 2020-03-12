@@ -9,10 +9,15 @@
    <body>
       
       <th:block th:include="/_menu"></th:block>
+       
+      <div class="container">
+      	<div class="row">
+      		<div class="col-lg-12">
  
       <div class="page-title">Order List</div>
       <div>Total Order Count: <span th:utext="${paginationResult.totalRecords}"></span></div>
-      <table border="1" style="width:100%">
+      <table class="table table-bordered">
+      <thead>
          <tr>
             <th>Order Num</th>
             <th>Order Date</th>
@@ -22,6 +27,8 @@
             <th>Amount</th>
             <th>View</th>
          </tr>
+         </thead>
+         <tbody>
          <tr th:each="orderInfo : ${paginationResult.list}">
             <td th:utext="${orderInfo.orderNum}"></td>
             <td th:utext="${#dates.format(orderInfo.orderDate,'dd-MM-yyyy HH:mm')}"></td>
@@ -32,6 +39,7 @@
             </td>
             <td><a th:href="@{|/admin/order?orderId=${orderInfo.id}|}">View</a></td>
          </tr>
+         </tbody>
       </table>
       <div class="page-navigator" th:if="${paginationResult.totalPages > 1}" >
          <th:block th:each="page: ${paginationResult.navigationPages}">
@@ -41,6 +49,13 @@
             <span th:if="${page == -1}" class="nav-item"> ... </span>
          </th:block>
       </div>
+      
+      
+       </div>
+      	</div>
+      </div> 
+      
+      <!-- ------------------------------container end---------------------------------- -->
  
       <th:block th:include="/_footer"></th:block>
        
